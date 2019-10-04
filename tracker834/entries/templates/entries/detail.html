@@ -1,6 +1,11 @@
-<h1>{{ entry.testFileName }}</h1>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'entries/bootstrap.min.css' %}">
+
+<h3>{{ query.queryName }}</h3>
 <ul>
-	<h4>Group Number | Assigned | GPC/Renewal | OE FIle Type (Proforma,834) | Test File Name | Test Date | Approved(who) | Prod File Name | Prod Date | Analytics Verified | Approved (who)</h4>
-	<li>{{ entry.name }} | {{entry.assigned }} | {{entry.renewal }} | {{entry.fileType }} | {{entry.testFileName }} | {{entry.testDate }} | {{entry.approvedWho }} | {{entry.prodFileName }} | {{entry.prodDate }} | {{entry.analyticsVerified }} | {{entry.approvedWhoTwo }}</li>
-	
+{% for instance in data %}
+    {% for field, value in instance.fields.items %}
+        <li>{{ field }}: {{ value }}</li>
+    {% endfor %}
+{% endfor %}
 </ul>

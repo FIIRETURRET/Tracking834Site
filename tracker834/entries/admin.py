@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Entry834
+from .models import Query
 
 # Register your models here.
-class Entry834Admin(admin.ModelAdmin):
-    list_display = ('groupnum', 'name', 'assigned', 'renewal', 'fileType', 'testFileName', 'testDate', 'approvedWho', 'prodFileName', 'prodDate', 'analyticsVerified', 'approvedWhoTwo')
+class QueryAdmin(admin.ModelAdmin):
+    list_display = ('queryName', 'folderName', 'subfolder', 'queryUsedFor', 'files', 'convertYN', 'conversionStartDate', 'assignedTo', 'conversionCompletionDate', 'newNameInBI',)
 
-admin.site.register(Entry834, Entry834Admin)
+admin.site.register(Query, QueryAdmin)

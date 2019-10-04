@@ -1,9 +1,13 @@
-{% if entries_list %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'entries/bootstrap.min.css' %}">
+
+{% if query_list %}
 	<ul>
-	{% for entry in entries_list %}
-		<li><a href="{% url 'entries:detail' entry.id %}">{{ entry.groupnum }} | {{ entry.name }} | {{ entry.assigned }} | {{ entry.testFileName }}</a></li>
+	{% for query in query_list %}
+		<li><a href="{% url 'entries:detail' query.id %}">{{ query.queryName }} | {{ query.assignedTo }} | {{ query.conversionStartDate }} | {{ query.queryUsedFor }}</a></li>
 	{% endfor %}
 	</ul>
+	<a class="btn btn-primary" href="{% url 'entries:export_entries_csv' %}">Export to CSV</a>
 {% else %}
 	<p> No entries are available.</p>
 {% endif %}
