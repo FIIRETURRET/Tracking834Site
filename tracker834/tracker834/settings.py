@@ -25,7 +25,7 @@ SECRET_KEY = 'ev$vz6r*5*^o=0&m7=u36-#dpptcppr0=uql*g)ejw!o$2azh2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cbs.pythonanywhere.com']
 
 
 # Application definition
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'entries'
 ]
 
@@ -120,3 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+STATIC_ROOT = '/home/CBS/Tracking834Site/tracker834/static'
+
+
+TIMEOUT = 800
