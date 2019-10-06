@@ -1,21 +1,35 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'entries/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'entries/backgroundImage.css' %}">
+{% extends 'entries/base.html' %}
 
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Query List</li>
+{% endblock %}
+
+{% block content %}
 {% if query_list %}
-    <h1>Query List</h1>
     <a class="btn btn-primary" href="{% url 'entries:export_entries_csv' %}">Export to CSV</a>
 	<a class="btn btn-primary" href="{% url 'entries:csv_upload' %}">Upload CSV file</a>
-	<a class="btn btn-primary" href="{% url 'admin:index' %}">Admin Portal</a>
-    <h5>Query Name | Assigned to | Conversion Start Date | Query used for</h5>
-	<ul>
-	{% for query in query_list %}
-		<li><a href="{% url 'entries:detail' query.id %}">{{ query.queryName }} | {{ query.assignedTo }} | {{ query.conversionStartDate }} | {{ query.queryUsedFor }}</a></li>
-	{% endfor %}
-	</ul>
-	<a class="btn btn-primary" href="{% url 'entries:export_entries_csv' %}">Export to CSV</a>
-	<a class="btn btn-primary" href="{% url 'entries:csv_upload' %}">Upload CSV file</a>
-	<a class="btn btn-primary" href="{% url 'admin:index' %}">Admin Portal</a>
-{% else %}
-	<p> No entries are available.</p>
+
+	<table class="table">
+	    <thread class="thread-inverse">
+    	    <tr>
+    	        <th>Query Name</th>
+    	        <th>Assigned To</th>
+    	        <th>Conversion Start Date</th>
+    	        <th>Query Used For</th>
+    	    </tr>
+	    </thread>
+	    <tbody>
+	        {% for query in query_list %}
+	            <tr>
+	                <td><a href="{% url 'entries:detail' query.id %}">{{ query.queryName }}</a></td>
+	                <td><a href="{% url 'entries:detail' query.id %}">{{ query.assignedTo }}</a></td>
+	                <td><a href="{% url 'entries:detail' query.id %}">{{ query.conversionStartDate }}</a></td>
+	                <td><a href="{% url 'entries:detail' query.id %}">{{ query.queryUsedFor }}</a></td>
+	                <td></td>
+	            </tr>
+            {% endfor %}
+	    </tbody>
+	</table>
 {% endif %}
+{% endblock %}
+
