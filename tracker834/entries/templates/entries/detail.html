@@ -1,11 +1,70 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'entries/bootstrap.min.css' %}">
+{% extends 'entries/base.html' %}
 
-<h3>{{ query.queryName }}</h3>
-<ul>
-{% for instance in data %}
-    {% for field, value in instance.fields.items %}
-        <li>{{ field }}: {{ value }}</li>
-    {% endfor %}
-{% endfor %}
-</ul>
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Query List/ {{ query.queryName }}</li>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thread class="thread-inverse">
+        <tr>
+            <th>Folder Name</th>
+            <th>Sub Folder</th>
+            <th>Sub Folder 2</th>
+            <th>Query Used For</th>
+        </tr>
+    </thread>
+    <tbody>
+        <tr>
+            <td>{{query.folderName}}</td>
+            <td>{{query.subfolder}}</td>
+            <td>{{query.subfolder2}}</td>
+            <td>{{query.queryUsedFor}}</td>
+        </tr>
+    </tbody>
+
+    <thread>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </thread>
+
+    <thread class="thread-inverse">
+        <tr>
+            <th>Query Name</th>
+            <th>Files</th>
+            <th>convertYN</th>
+            <th>Conversion Start Date</th>
+        </tr>
+    </thread>
+    <tbody>
+        <tr>
+            <td>{{query.queryName}}</td>
+            <td>{{query.files}}</td>
+            <td>{{query.convertYN}}</td>
+            <td>{{query.conversionStartDate}}</td>
+        </tr>
+    </tbody>
+
+    <thread>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </thread>
+
+    <thread class="thread-inverse">
+        <tr>
+            <th>Assigned To</th>
+            <th>Conversion Completion Date</th>
+            <th>New BI Name</th>
+        </tr>
+    </thread>
+    <tbody>
+        <tr>
+            <td>{{query.assignedTo}}</td>
+            <td>{{query.converstionCompletionDate}}</td>
+            <td>{{query.newNameInBI}}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
