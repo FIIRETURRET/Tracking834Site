@@ -18,4 +18,7 @@ class Query(models.Model):
     def __str__(self):
         return  Query.formatNoneType(self.queryName) + " | " + Query.formatNoneType(self.assignedTo) + " | " + Query.formatNoneType(self.convertYN) + " | " + Query.formatNoneType(self.queryUsedFor)
 
-
+    def formatNoneType(inString):
+        if inString is None:
+            return ''
+        return str(inString)

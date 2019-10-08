@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'entries'
+    'widget_tweaks',
+
+    'entries',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +129,12 @@ STATIC_ROOT = '/home/CBS/Tracking834Site/tracker834/static'
 
 
 TIMEOUT = 800
+
+
+# The default redirect url after a user logs out.
+LOGOUT_REDIRECT_URL = 'home'
+# The default redirect after a user logs in.
+LOGIN_REDIRECT_URL = 'home'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
