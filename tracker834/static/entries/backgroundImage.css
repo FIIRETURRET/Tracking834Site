@@ -1,0 +1,5 @@
+body {
+    background: url("images/dot-grid.png");
+	background-repeat: repeat;
+	#background-size: 100%
+}
