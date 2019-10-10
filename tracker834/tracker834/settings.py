@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ev$vz6r*5*^o=0&m7=u36-#dpptcppr0=uql*g)ejw!o$2azh2'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,6 +135,7 @@ TIMEOUT = 800
 LOGOUT_REDIRECT_URL = 'home'
 # The default redirect after a user logs in.
 LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -30,6 +30,8 @@
             {% endfor %}
 	    </tbody>
 	</table>
+{% else %}
+    <a class="btn btn-primary" href="{% url 'entries:csv_upload' %}">Upload CSV file</a>
 {% endif %}
 {% endblock %}
 
