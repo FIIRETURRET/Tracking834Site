@@ -1,0 +1,36 @@
+{% extends 'databaseEntries/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><a href="{% url 'homepage:index' %}">Home</a>/Database List</li>
+{% endblock %}
+
+{% block content %}
+{% if database_list %}
+    <a class="btn btn-primary" href="{% url 'databases:new_database' %}">Create a new entry</a>
+
+	<table class="table">
+	    <thread class="thread-inverse">
+    	    <tr>
+    	        <th>Database Name</th>
+    	        <th>Location</th>
+    	        <th>Good Link</th>
+    	        <th>Needed</th>
+    	    </tr>
+	    </thread>
+	    <tbody>
+	        {% for database in database_list %}
+	            <tr>
+	                <td><a href="{% url 'databases:detail' database.id %}">{{ database.data }}</a></td>
+	                <td><a href="{% url 'databases:detail' database.id %}">{{ database.whereFound }}</a></td>
+	                <td><a href="{% url 'databases:detail' database.id %}">{{ database.goodLink }}</a></td>
+	                <td><a href="{% url 'databases:detail' database.id %}">{{ database.needed }}</a></td>
+	                <td></td>
+	            </tr>
+            {% endfor %}
+	    </tbody>
+	</table>
+{% else %}
+    <p>database_list not loaded</p>
+{% endif %}
+{% endblock %}
+

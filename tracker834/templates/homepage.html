@@ -1,0 +1,23 @@
+{% extends 'entries/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Query List</li>
+{% endblock %}
+
+{% block content %}
+	<table class="table">
+	    <thread class="thread-inverse">
+    	    <tr>
+    	        <th>Project Name</th>
+    	        <th>Description</th>
+    	    </tr>
+	    </thread>
+	    <tbody>
+            <tr>
+                <td><a href="{% url 'entries:index' %}">Query List</a></td>
+                <td><a href="{% url 'databases:index' %}">Database List</a></td>
+                <td></td>
+            </tr>
+	    </tbody>
+	</table>
+{% endblock %}

@@ -19,11 +19,13 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('homepage/', include('homepage.urls'), name='homepage'),
     path('admin/', admin.site.urls, name='admin'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('queries/', include('entries.urls'), name='queries'),
-    path('', RedirectView.as_view(url='queries/', permanent=False), name='home'),
+    path('databases/', include('databaseEntries.urls'), name='databases'),
+    path('', RedirectView.as_view(url='homepage/', permanent=False), name='home'),
     path('reset/',
         auth_views.PasswordResetView.as_view(
         template_name='password_reset.html',

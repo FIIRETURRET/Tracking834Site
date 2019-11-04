@@ -1,0 +1,12 @@
+{% extends 'databaseEntries/base.html' %}
+
+{% block title %}Create a new database entry{% endblock %}
+
+{% block content %}
+
+    <form method="POST" novalidate>
+		{% csrf_token %}
+		{% include 'databaseEntries/form.html' %}
+		<button type="submit" class="btn btn-success">Post</button>
+	</form>
+{% endblock %}

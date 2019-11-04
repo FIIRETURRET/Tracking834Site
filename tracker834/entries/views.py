@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 import datetime
 import csv, io
 from .models import Query
+from .forms import NewQueryForm
 from django.core import serializers
 from django.http import HttpResponse
 from django.contrib import messages
@@ -21,9 +22,39 @@ def index(request):
 
 @login_required
 def detail(request, query_id):
-    query = get_object_or_404(Query, pk=query_id)
-    data = serializers.serialize( "python", Query.objects.all() )
-    return render(request, 'entries/detail.html', {'query': query, 'data': data})
+    if request.method == "POST":
+        if request.POST.get('queryName'):
+            query = get_object_or_404(Query, pk=query_id)
+            query.queryName = request.POST.get('queryName')
+            query.folderName = request.POST.get('folderName')
+            query.subfolder = request.POST.get('subfolder')
+            query.subfolder2 = request.POST.get('subfolder2')
+            query.queryUsedFor = request.POST.get('queryUsedFor')
+            query.files = request.POST.get('files')
+            query.convertYN =request.POST.get('convertYN')
+            query.conversionStartDate = request.POST.get('conversionStartDate')
+            query.assignedTo = request.POST.get('assignedTo')
+            query.conversionCompletionDate = request.POST.get('conversionCompletionDate')
+            query.newNameInBI = request.POST.get('newNameInBI')
+            query.save()
+            return redirect('entries:index')
+    else:
+        query = get_object_or_404(Query, pk=query_id)
+        data = serializers.serialize( "python", Query.objects.all())
+        return render(request, 'entries/detail.html', {'query': query, 'data': data})
+
+@login_required
+def new_query(request):
+    if request.method == 'POST':
+        form = NewQueryForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.created_by = request.user
+            post.save()
+            return redirect('entries:index')
+    else:
+        form = NewQueryForm()
+    return render(request, 'entries/new_query.html', {'form': form})
 
 @login_required
 def export_entries_csv(request):

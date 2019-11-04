@@ -1,11 +1,12 @@
 {% extends 'entries/base.html' %}
 
 {% block breadcrumb %}
-<li class="breadcrumb-item active">Query List</li>
+<li class="breadcrumb-item active"><a href="{% url 'homepage:index' %}">Home</a>/Query List</li>
 {% endblock %}
 
 {% block content %}
 {% if query_list %}
+    <a class="btn btn-primary" href="{% url 'entries:new_query' %}">New Entry</a>
     <a class="btn btn-primary" href="{% url 'entries:export_entries_csv' %}">Export to CSV</a>
 	<a class="btn btn-primary" href="{% url 'entries:csv_upload' %}">Upload CSV file</a>
 

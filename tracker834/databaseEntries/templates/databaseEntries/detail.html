@@ -1,0 +1,53 @@
+{% extends 'databaseEntries/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><a href="{% url 'homepage:index' %}">Home</a><a href="{% url 'databases:index' %}">/Database List</a>/{{ database.data }}</li>
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <table class="table">
+        <thread class="thread-inverse">
+            <tr>
+                <th>Database Name</th>
+                <th>Location</th>
+                <th>Description</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td><input type="text" name="data" value={{database.data}}></input></td>
+                <td><input type="text" name="whereFound" value={{database.whereFound}}></input></td>
+                <td><input type="text" name="description" value={{database.description}}></input></td>
+            </tr>
+        </tbody>
+        <thread>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </thread>
+
+        <thread class="thread-inverse">
+            <tr>
+                <th>Good Link</th>
+                <th>Needed</th>
+                <th>Notes</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td><input type="text" name="goodLink" value={{database.goodLink}}></input></td>
+                <td><input type="text" name="needed" value={{database.needed}}></input></td>
+                <td><input type="text" name="notes" value={{database.notes}}></input></td>
+            </tr>
+        </tbody>
+        <thread>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </thread>
+    </table>
+    <input class="btn btn-primary" type="submit" value="Save"></input>
+</form>
+{% endblock %}

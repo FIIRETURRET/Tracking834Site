@@ -1,70 +1,75 @@
 {% extends 'entries/base.html' %}
 
 {% block breadcrumb %}
-<li class="breadcrumb-item active">Query List/ {{ query.queryName }}</li>
+<li class="breadcrumb-item active"><a href="{% url 'homepage:index' %}">Home</a><a href="{% url 'entries:index' %}">/Query List</a>/ {{ query.queryName }}</li>
 {% endblock %}
 
 {% block content %}
-<table class="table">
-    <thread class="thread-inverse">
-        <tr>
-            <th>Folder Name</th>
-            <th>Sub Folder</th>
-            <th>Sub Folder 2</th>
-            <th>Query Used For</th>
-        </tr>
-    </thread>
-    <tbody>
-        <tr>
-            <td>{{query.folderName}}</td>
-            <td>{{query.subfolder}}</td>
-            <td>{{query.subfolder2}}</td>
-            <td>{{query.queryUsedFor}}</td>
-        </tr>
-    </tbody>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table class="table">
+        <thread class="thread-inverse">
+            <tr>
+                <th>Folder Name</th>
+                <th>Sub Folder</th>
+                <th>Sub Folder 2</th>
+                <th>Query Used For</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td><input type="text" name="folderName" value={{query.folderName}}></input></td>
+                <td><input type="text" name="subfolder" value={{query.subfolder}}></input></td>
+                <td><input type="text" name="subfolder2" value={{query.subfolder2}}></input></td>
+                <td><input type="text" name="queryUsedFor" value={{query.queryUsedFor}}></input></td>
+            </tr>
+        </tbody>
 
-    <thread>
-        <tr>
-            <td>&nbsp;</td>
-        </tr>
-    </thread>
+        <thread>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </thread>
 
-    <thread class="thread-inverse">
-        <tr>
-            <th>Query Name</th>
-            <th>Files</th>
-            <th>convertYN</th>
-            <th>Conversion Start Date</th>
-        </tr>
-    </thread>
-    <tbody>
-        <tr>
-            <td>{{query.queryName}}</td>
-            <td>{{query.files}}</td>
-            <td>{{query.convertYN}}</td>
-            <td>{{query.conversionStartDate}}</td>
-        </tr>
-    </tbody>
+        <thread class="thread-inverse">
+            <tr>
+                <th>Query Name</th>
+                <th>Files</th>
+                <th>convertYN</th>
+                <th>Conversion Start Date</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td><input type="text" name="queryName" value={{query.queryName}}></input></td>
+                <td><input type="text" name="files" value={{query.files}}></input></td>
+                <td><input type="text" name="convertYN" value={{query.convertYN}}></input></td>
+                <td><input type="text" name="conversionStartDate" value={{query.conversionStartDate}}></input></td>
+            </tr>
+        </tbody>
 
-    <thread>
-        <tr>
-            <td>&nbsp;</td>
-        </tr>
-    </thread>
+        <thread>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </thread>
 
-    <thread class="thread-inverse">
-        <tr>
-            <th>Assigned To</th>
-            <th>Conversion Completion Date</th>
-            <th>New BI Name</th>
-        </tr>
-    </thread>
-    <tbody>
-        <tr>
-            <td>{{query.assignedTo}}</td>
-            <td>{{query.converstionCompletionDate}}</td>
-            <td>{{query.newNameInBI}}</td>
-        </tr>
-    </tbody>
-</table>
+        <thread class="thread-inverse">
+            <tr>
+                <th>Assigned To</th>
+                <th>Conversion Completion Date</th>
+                <th>New BI Name</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td><input type="text" name="assignedTo" value={{query.assignedTo}}></input></td>
+                <td><input type="text" name="conversionCompletionDate" value={{query.conversionCompletionDate}}></input></td>
+                <td><input type="text" name="newNameInBI" value={{query.newNameInBI}}></input></td>
+            </tr>
+        </tbody>
+    </table>
+    <input class="btn btn-primary" type="submit" value="Save"></input>
+
+</form>
 {% endblock %}

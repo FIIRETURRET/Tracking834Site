@@ -1,0 +1,26 @@
+{% extends 'homepage/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Home Page</li>
+{% endblock %}
+
+{% block content %}
+	<table class="table">
+	    <thread class="thread-inverse">
+    	    <tr>
+    	        <th>Project Name</th>
+    	        <th>Description</th>
+    	    </tr>
+	    </thread>
+	    <tbody>
+            <tr>
+                <td><a href="{% url 'entries:index' %}">Query List</a></td>
+                <td><a href="{% url 'entries:index' %}"></a>A working list of all the queries that need to be transfered to BI</td>
+            </tr>
+            <tr>
+                <td><a href="{% url 'databases:index' %}">Database List</a></td>
+                <td><a href="{% url 'databases:index' %}"></a>A working list of all the databases within 'find a database'</td>
+            </tr>
+	    </tbody>
+	</table>
+{% endblock %}
